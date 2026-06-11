@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Tarefa</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+
+    <div class="card">
+
+        <div class="card-header">
+            <h2>Formulário de Tarefa</h2>
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Nome</label>
+
+                    <input
+                        type="text"
+                        name="nome"
+                        class="form-control"
+                        value="{{ tarefa.nome|default:'' }}"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Descrição</label>
+
+                    <textarea
+                        name="descricao"
+                        class="form-control">{{ tarefa.descricao|default:'' }}</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Data</label>
+
+                    <input
+                        type="date"
+                        name="data_inicio"
+                        class="form-control"
+                        value="{{ tarefa.data_inicio|default:'' }}"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Status</label>
+
+                    <select name="status" class="form-select">
+
+                        <option value="nao_iniciado">Não iniciado</option>
+                        <option value="aprovado">Aprovado</option>
+                        <option value="paralisado">Paralisado</option>
+                        <option value="finalizado">Finalizado</option>
+
+                    </select>
+
+                </div>
+
+                <button class="btn btn-primary">
+                    Salvar
+                </button>
+
+                <a href="/" class="btn btn-secondary">
+                    Voltar
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
